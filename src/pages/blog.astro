@@ -3,18 +3,35 @@ import Base from "../layouts/Base.astro";
 import { getCollection } from "astro:content";
 
 const posts = await getCollection("blog");
+const publishedPosts = posts.filter(post => !post.data.draft);
+const sortedPosts = publishedPosts.sort((a, b) => 
+  new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+);
 ---
 
 <Base title="PSZ | Blog">
   <h1>Blog</h1>
+  <p>Thoughts on AI/ML, software development, and other things I find interesting.</p>
 
-  <ul>
-    {posts.map(post => (
-      <li>
-        <a href={`/blog/${post.slug}/`}>
-          {post.data.title}
-        </a>
-      </li>
-    ))}
-  </ul>
+  {sortedPosts.map(post => (
+    <article class="blog-post-preview">
+      <h2>
+        <a href={`/blog/${post.slug}/`}>{post.data.title}</a>
+      </h2>
+      <div class="blog-meta">
+        <time>{new Date(post.data.date).toLocaleDateString('en-US', { 
+          year: 'numeric', 
+          month: 'long', 
+          day: 'numeric' 
+        })}</time>
+        {post.data.readingTime && <span> · {post.data.readingTime} min read</span>}
+      </div>
+      {post.data.description && <p class="blog-description">{post.data.description}</p>}
+      {post.data.tags && post.data.tags.length > 0 && (
+        <div class="blog-tags">
+          {post.data.tags.map(tag => <span class="tag">{tag}</span>)}
+        </div>
+      )}
+    </article>
+  ))}
 </Base>

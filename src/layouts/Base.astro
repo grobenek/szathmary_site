@@ -27,11 +27,13 @@ const pageTitle = title || frontmatter?.title || "Peter Szathmary";
       <nav>
         <a href="/">Home</a>
         <ul>
+          <li><a href="/experience/">Experience</a></li>
+          <li><a href="/projects/">Projects</a></li>
           <li><a href="/blog/">Blog</a></li>
           <li><a href="https://github.com/grobenek">GitHub</a></li>
           <li>
             <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
-              🌙
+              <span id="theme-icon"></span>
             </button>
           </li>
         </ul>
@@ -41,10 +43,17 @@ const pageTitle = title || frontmatter?.title || "Peter Szathmary";
       <slot />
     </main>
     <footer>
-      <p>&copy; 2026. <a href="/">Home</a> | <a href="/blog/">Blog</a> | <a href="https://github.com/grobenek">GitHub</a></p>
-      <p>The site follows noble ideas of the <a href="https://thebestmotherfucking.website/" target="_blank">thebestmotherf*cking.website</a> which more people should consider doing. The Internet would be much more informative and pleasant experience.</p>
+      <p>The site follows noble ideas of the <a href="https://thebestmotherfucking.website/" target="_blank">thebestmotherf*cking.website</a> which more people should consider doing. The Internet would be a much more informative and pleasant experience.</p>
     </footer>
-    <script>
+    <script is:inline>
+      // Set icon immediately
+      const iconEl = document.getElementById('theme-icon');
+      const isDarkMode = document.documentElement.classList.contains('dark-mode');
+      if (iconEl) {
+        iconEl.textContent = isDarkMode ? '☀️' : '🌙';
+      }
+      
+      // Theme toggle handler
       const toggle = document.getElementById('theme-toggle');
       const html = document.documentElement;
       
@@ -52,14 +61,16 @@ const pageTitle = title || frontmatter?.title || "Peter Szathmary";
         html.classList.toggle('dark-mode');
         const isDark = html.classList.contains('dark-mode');
         localStorage.setItem('dark-mode', isDark ? 'true' : 'false');
-        toggle.textContent = isDark ? '☀️' : '🌙';
+        iconEl.textContent = isDark ? '☀️' : '🌙';
       });
-      
-      // Set initial icon
-      const isDark = html.classList.contains('dark-mode');
-      toggle.textContent = isDark ? '☀️' : '🌙';
+
+      // Open external links in new tab
+      document.querySelectorAll('a').forEach(link => {
+        if (link.hostname && link.hostname !== window.location.hostname) {
+          link.target = '_blank';
+          link.rel = 'noopener noreferrer';
+        }
+      });
     </script>
-  </body>
-</html>
   </body>
 </html>

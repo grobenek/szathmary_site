@@ -18,7 +18,16 @@ const { Content } = await post.render();
 <Base title={'PSZ | ' + post.data.title}>
   <article>
     <h1>{post.data.title}</h1>
-    <p class="meta">{post.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+    <div class="blog-meta">
+      <time>{post.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+      {post.data.readingTime && <span> · {post.data.readingTime} min read</span>}
+      {post.data.updated && <span> · Updated {post.data.updated.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>}
+    </div>
+    {post.data.tags && post.data.tags.length > 0 && (
+      <div class="blog-tags">
+        {post.data.tags.map(tag => <span class="tag">{tag}</span>)}
+      </div>
+    )}
     <Content />
   </article>
 </Base>

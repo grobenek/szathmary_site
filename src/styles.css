@@ -4,7 +4,7 @@
   --text-secondary: #666;
   --border-color: #ddd;
   --link-color: #0066cc;
-  --link-visited: #800080;
+  --link-visited: #0077aa;
   --header-border: #000;
   --code-bg: #f6f6f6;
 }
@@ -15,7 +15,7 @@ html.dark-mode {
   --text-secondary: #999;
   --border-color: #444;
   --link-color: #66b3ff;
-  --link-visited: #cc99ff;
+  --link-visited: #aa3300;
   --header-border: #333;
   --code-bg: #2a2a2a;
 }
@@ -47,14 +47,33 @@ nav {
 }
 
 nav > a {
-  font-weight: bold;
   font-size: 1.1rem;
   color: var(--text-color);
   border: none;
+  text-decoration: none;
+}
+
+nav > a:visited {
+  color: var(--text-color);
 }
 
 nav > a:hover {
-  text-decoration: underline;
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+nav li a {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+nav li a:visited {
+  color: var(--text-color);
+}
+
+nav li a:hover {
+  color: var(--link-color);
+  text-decoration: none;
 }
 
 nav ul {
@@ -108,7 +127,7 @@ a:visited {
 }
 
 strong {
-  color: #0052a3;
+  color: #111;
   font-weight: 700;
 }
 
@@ -152,6 +171,58 @@ img {
   padding-bottom: 1rem;
   border-bottom: 1px solid var(--border-color);
   font-style: italic;
+}
+
+.blog-post-preview {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.blog-post-preview:first-of-type {
+  border-top: 2px solid var(--border-color);
+}
+
+.blog-post-preview h2 {
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.blog-post-preview h2 a {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.blog-post-preview h2 a:hover {
+  color: var(--link-color);
+}
+
+.blog-meta {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+  font-style: italic;
+}
+
+.blog-description {
+  color: var(--text-color);
+  margin-top: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.blog-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.75rem;
+}
+
+.tag {
+  background: var(--code-bg);
+  color: var(--text-secondary);
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+  font-size: 0.85rem;
 }
 
 footer {
