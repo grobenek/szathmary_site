@@ -1,0 +1,65 @@
+---
+import "../styles.css";
+
+const { title, frontmatter } = Astro.props;
+const pageTitle = title || frontmatter?.title || "Peter Szathmary";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href="/favicon_benny.png" />
+    <title>{pageTitle}</title>
+    <script is:inline>
+      // Dark mode toggle
+      const htmlEl = document.documentElement;
+      const isDark = localStorage.getItem('dark-mode') === 'true' || 
+                     (!localStorage.getItem('dark-mode') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      if (isDark) {
+        htmlEl.classList.add('dark-mode');
+      }
+    </script>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="/">Home</a>
+        <ul>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="https://github.com/grobenek">GitHub</a></li>
+          <li>
+            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+              🌙
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer>
+      <p>&copy; 2026. <a href="/">Home</a> | <a href="/blog/">Blog</a> | <a href="https://github.com/grobenek">GitHub</a></p>
+      <p>The site follows noble ideas of the <a href="https://thebestmotherfucking.website/" target="_blank">thebestmotherf*cking.website</a> which more people should consider doing. The Internet would be much more informative and pleasant experience.</p>
+    </footer>
+    <script>
+      const toggle = document.getElementById('theme-toggle');
+      const html = document.documentElement;
+      
+      toggle.addEventListener('click', () => {
+        html.classList.toggle('dark-mode');
+        const isDark = html.classList.contains('dark-mode');
+        localStorage.setItem('dark-mode', isDark ? 'true' : 'false');
+        toggle.textContent = isDark ? '☀️' : '🌙';
+      });
+      
+      // Set initial icon
+      const isDark = html.classList.contains('dark-mode');
+      toggle.textContent = isDark ? '☀️' : '🌙';
+    </script>
+  </body>
+</html>
+  </body>
+</html>
