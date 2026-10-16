@@ -9,8 +9,10 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.16.6",
+    "@astrojs/check": "^0.9.10",
+    "astro": "^7.4.0",
+    "astro-mermaid": "^2.1.0",
     "playwright": "^1.57.0",
-    "rehype-mermaid": "^3.0.0"
+    "typescript": "^6.0.3"
   }
 }
