@@ -10,12 +10,12 @@ const pageTitle = title || frontmatter?.title || "Peter Szathmary";
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/png" href="/favicon_benny.png" />
+    <link rel="icon" type="image/webp" href="/favicon_benny.webp" />
     <title>{pageTitle}</title>
     <script is:inline>
       // Dark mode toggle
       const htmlEl = document.documentElement;
-      const isDark = localStorage.getItem('dark-mode') === 'true' || 
+      const isDark = localStorage.getItem('dark-mode') === 'true' ||
                      (!localStorage.getItem('dark-mode') && window.matchMedia('(prefers-color-scheme: dark)').matches);
       if (isDark) {
         htmlEl.classList.add('dark-mode');
@@ -52,11 +52,11 @@ const pageTitle = title || frontmatter?.title || "Peter Szathmary";
       if (iconEl) {
         iconEl.textContent = isDarkMode ? '☀️' : '🌙';
       }
-      
+
       // Theme toggle handler
       const toggle = document.getElementById('theme-toggle');
       const html = document.documentElement;
-      
+
       toggle.addEventListener('click', () => {
         html.classList.toggle('dark-mode');
         const isDark = html.classList.contains('dark-mode');

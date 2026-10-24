@@ -14,4 +14,4 @@ You can also send me encrypted messages using PGP:
 - [Search on OpenPGP Key Server](https://keys.openpgp.org/search?q=peter.szathmary@szathmary.sk)  
 
 And here’s a picture of my dog Benny:
-![Benny](/benny.png)
+![Benny](/benny.webp)
